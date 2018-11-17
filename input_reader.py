@@ -14,10 +14,8 @@ def alt_matrix_generator(matrix_in):
         for j in range(0, np.size(matrix_in, 1)+1):
             try:
                 if j == 0:
-                    print(matrix_in[i][j])
                     matrix_out[i][j] = float(matrix_in[i][j])
                 elif j == np.size(matrix_in, 1):
-                    print(j)
                     matrix_out[i][j] = -float(matrix_in[i][j-1])
                 else:
                     matrix_out[i][j] = float(matrix_in[i][j]) - float(matrix_in[i][j-1])  # Asignación de valor a matrix_out
