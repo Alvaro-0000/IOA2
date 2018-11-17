@@ -14,11 +14,11 @@ def alt_matrix_generator(matrix_in):
         for j in range(0, np.size(matrix_in, 1)+1):
             try:
                 if j == 0:
-                    matrix_out[i][j] = float(matrix_in[i][j])
+                    matrix_out[i][j] = matrix_in[i][j]
                 elif j == np.size(matrix_in, 1):
-                    matrix_out[i][j] = -float(matrix_in[i][j-1])
+                    matrix_out[i][j] = -matrix_in[i][j-1]
                 else:
-                    matrix_out[i][j] = float(matrix_in[i][j]) - float(matrix_in[i][j-1])  # Asignación de valor a matrix_out
+                    matrix_out[i][j] = matrix_in[i][j] - matrix_in[i][j-1]  # Asignación de valor a matrix_out
             except Exception as e:
                 print(i, j, e)
                 exit(12)
@@ -34,6 +34,7 @@ def matrix_file_reader(filename):
     """
     matrix = None
     matrix_values_list = []     # Lista que almacena los valores hasta que se conoce el tamaño de la matriz de entrada.
+    matrix_values_list_alt = []
     columns = 0
     rows = 0
 
@@ -46,7 +47,9 @@ def matrix_file_reader(filename):
                 if columns == 0:
                     columns = len(line_array)               # Reconoce las columnas. Si alguna fila tiene mas valores,
                     # estos no se tomaran en cuenta.
-        matrix = np.asarray(matrix_values_list)             # Forma un ndarray en base a la lista.
+        for i, value in enumerate(matrix_values_list):
+            matrix_values_list_alt[i] = int(value)
+        matrix = np.asarray(matrix_values_list_alt)             # Forma un ndarray en base a la lista.
         matrix = np.reshape(matrix, (rows, columns))        # Cambia la forma del ndarray en base a rows y columns.
     else:
         print("Archivo no soportado.")
