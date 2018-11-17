@@ -8,14 +8,22 @@ def alt_matrix_generator(matrix_in):
     :param matrix_in: numpy array, matriz de entrada para generar la nueva matriz.
     :return: numpy array.
     """
-    matrix_out = np.zeros((np.size(matrix_in, 0), np.size(matrix_in, 1)))   # Genera un ndarray de 0's
-    print("Matriz de tamaño", np.size(matrix_in, 0), "x", np.size(matrix_in, 1))
+    matrix_out = np.zeros((np.size(matrix_in, 0), np.size(matrix_in, 1)+1))   # Genera un ndarray de 0's
+    print("Matriz de tamaño", np.size(matrix_in, 0), "x", np.size(matrix_in, 1)+1)
     for i in range(0, np.size(matrix_in, 0)):
-        for j in range(0, np.size(matrix_in, 1)):
-            if j-1 > 0:
-                matrix_out[i][j] = float(matrix_in[i][j]) - float(matrix_in[i][j-1])  # Asignación de valor a matrix_out
-            else:
-                matrix_out[i][j] = float(matrix_in[i][j]) - float(matrix_in[i][0])  # Asignación para j-1 =< 0
+        for j in range(0, np.size(matrix_in, 1)+1):
+            try:
+                if j == 0:
+                    print(matrix_in[i][j])
+                    matrix_out[i][j] = float(matrix_in[i][j])
+                elif j == np.size(matrix_in, 1):
+                    print(j)
+                    matrix_out[i][j] = -float(matrix_in[i][j-1])
+                else:
+                    matrix_out[i][j] = float(matrix_in[i][j]) - float(matrix_in[i][j-1])  # Asignación de valor a matrix_out
+            except Exception as e:
+                print(i, j, e)
+                exit(12)
     return matrix_out
 
 
