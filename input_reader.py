@@ -47,8 +47,8 @@ def matrix_file_reader(filename):
                 if columns == 0:
                     columns = len(line_array)               # Reconoce las columnas. Si alguna fila tiene mas valores,
                     # estos no se tomaran en cuenta.
-        for i, value in enumerate(matrix_values_list):
-            matrix_values_list_alt[i] = int(value)
+        for value in matrix_values_list:
+            matrix_values_list_alt.append(int(value))
         matrix = np.asarray(matrix_values_list_alt)             # Forma un ndarray en base a la lista.
         matrix = np.reshape(matrix, (rows, columns))        # Cambia la forma del ndarray en base a rows y columns.
     else:
