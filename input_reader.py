@@ -16,7 +16,6 @@ def alt_matrix_generator(matrix_in):
                 matrix_out[i][j] = float(matrix_in[i][j]) - float(matrix_in[i][j-1])  # Asignación del nuevo valor
             else:
                 matrix_out[i][j] = float(matrix_in[i][j]) - float(matrix_in[i][0])  # Asignación para j-1 =< 0
-        print(matrix_out)
     return matrix_out
 
 
